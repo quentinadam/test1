@@ -7,8 +7,17 @@ jobs:
   run-composite-action:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Resolve workflow ref
+        id: resolve_ref
+        shell: bash
+        run: echo "ref=${GITHUB_WORKFLOW_REF##*@}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout test1 at requested ref
         uses: actions/checkout@v4
+        with:
+          repository: quentinadam/test1
+          ref: ${{ steps.resolve_ref.outputs.ref }}
+          path: test1-src
 
       - name: Run composite action
-        uses: ./.github/actions/echo-datetime
+        uses: ./test1-src/.github/actions/echo-datetime

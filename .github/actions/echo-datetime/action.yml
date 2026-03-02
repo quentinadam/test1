@@ -6,4 +6,4 @@ runs:
   steps:
     - name: Execute datetime script
       shell: bash
-      run: bash ./scripts/echo-datetime.sh
+      run: bash "$GITHUB_ACTION_PATH/echo-datetime.sh"
