@@ -1,0 +1,9 @@
+name: Echo Datetime
+description: Composite action that runs a script to print current date/time.
+
+runs:
+  using: composite
+  steps:
+    - name: Execute datetime script
+      shell: bash
+      run: bash ./scripts/echo-datetime.sh
